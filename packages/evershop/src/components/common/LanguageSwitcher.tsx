@@ -45,10 +45,16 @@ export default function LanguageSwitcher(): React.ReactElement | null {
   };
 
   return (
+    // Uncontrolled on purpose (defaultValue, not value). A controlled select
+    // re-asserts its value on every React re-render; if a render lands while
+    // the native dropdown is open (ajax refetch, notification update, ...),
+    // the browser can commit the reset value and fire a phantom `change`,
+    // navigating away without the user ever picking an option. Uncontrolled +
+    // full-page navigation keeps DOM and state in lockstep by construction.
     <select
       className="language-switcher"
       aria-label={_('Language')}
-      value={locale}
+      defaultValue={locale}
       onChange={onChange}
     >
       {availableLocales.map((code) => (

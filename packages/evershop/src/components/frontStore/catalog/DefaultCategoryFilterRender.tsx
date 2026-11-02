@@ -72,9 +72,15 @@ export const DefaultCategoryFilterRender: React.FC<{
 
   const getFilteredCategories = () => {
     if (!searchTerm) return categories;
-    return categories.filter((category) =>
-      category.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const term = searchTerm.toLowerCase();
+    return categories.filter((category) => {
+      // Match against both the stored (source-language) name and its
+      // localized display text, so search works in either language.
+      return (
+        category.name.toLowerCase().includes(term) ||
+        _(category.name).toLowerCase().includes(term)
+      );
+    });
   };
 
   if (!categories || categories.length === 0) {
@@ -146,7 +152,7 @@ export const DefaultCategoryFilterRender: React.FC<{
                     htmlFor={`category-${category.categoryId}`}
                     className="cursor-pointer font-normal leading-5 text-muted-foreground"
                   >
-                    {category.name}
+                    {_(category.name)}
                   </Label>
                 </div>
               );
