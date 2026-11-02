@@ -82,6 +82,11 @@ const coreModules = [
     path: path.resolve(__dirname, '../../modules/tax')
   },
   {
+    name: 'translationdb',
+    resolve: path.resolve(__dirname, '../../modules/translationdb'),
+    path: path.resolve(__dirname, '../../modules/translationdb')
+  },
+  {
     name: 'pageBuilder',
     resolve: path.resolve(__dirname, '../../modules/pageBuilder'),
     path: path.resolve(__dirname, '../../modules/pageBuilder')
