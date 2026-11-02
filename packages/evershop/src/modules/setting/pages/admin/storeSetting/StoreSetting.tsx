@@ -281,7 +281,7 @@ const LanguageSettings: React.FC<{
             "The storefront's primary language. Pages in this language have no URL prefix."
           )}
         />
-        {/* <ReactSelectField
+        <ReactSelectField
           name="storeLanguages"
           label={_('Additional languages')}
           isMulti
@@ -290,7 +290,7 @@ const LanguageSettings: React.FC<{
           helperText={_(
             "Extra languages shoppers can switch to, on top of the default. The default language is always available — you don't add it here."
           )}
-        /> */}
+        />
         <SelectField
           name="adminLanguage"
           label={_('Admin panel language')}
