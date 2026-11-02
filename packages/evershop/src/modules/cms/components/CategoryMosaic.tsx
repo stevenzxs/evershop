@@ -7,6 +7,7 @@ import {
 } from '@components/common/page-builder/index.js';
 import { ImagePlus } from 'lucide-react';
 import { _ } from '@evershop/evershop/lib/locale/translate/_';
+import { localizeLink } from '@evershop/evershop/lib/locale/activeDictionary.js';
 import React, { useEffect, useState } from 'react';
 
 /**
@@ -195,7 +196,7 @@ export default function CategoryMosaic({
           return (
             <a
               key={tile.id}
-              href={tile.link}
+              href={localizeLink(tile.link)}
               target={tile.newTab ? '_blank' : undefined}
               rel={tile.newTab ? 'noopener noreferrer' : undefined}
               aria-label={`Shop ${_(tile.label)}`}

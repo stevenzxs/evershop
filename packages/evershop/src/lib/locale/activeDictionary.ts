@@ -74,6 +74,29 @@ export function getLocaleContextIso(): IsoLocaleContext {
  * target route is not admin, the current context is not admin, and the locale is not
  * the default. Lives in this isomorphic module on purpose (stays client-safe).
  */
+/**
+ * Localize a free-form internal link for the active locale. Widget settings
+ * (menus, mosaics, tiered categories) store plain path strings that bypass
+ * `buildUrl`; rendering them raw would drop the shopper out of a non-default
+ * locale (clicking a category on /zh/ would land on the English page).
+ * External URLs, anchors and non-page schemes pass through untouched, and an
+ * already-prefixed path is never double-prefixed.
+ */
+export function localizeLink(url: string): string {
+  if (!url || !url.startsWith('/')) {
+    return url;
+  }
+  const ctx = getLocaleContextIso();
+  if (
+    ctx.locale &&
+    ctx.locale !== ctx.defaultLocale &&
+    (url === `/${ctx.locale}` || url.startsWith(`/${ctx.locale}/`))
+  ) {
+    return url;
+  }
+  return applyLocalePrefix(url, ctx);
+}
+
 export function applyLocalePrefix(
   url: string,
   ctx: IsoLocaleContext | undefined,

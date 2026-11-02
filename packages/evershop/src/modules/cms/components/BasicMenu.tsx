@@ -7,6 +7,7 @@ import {
   NavigationMenuTrigger
 } from '@components/common/ui/NavigationMenu.js';
 import { _ } from '@evershop/evershop/lib/locale/translate/_';
+import { localizeLink } from '@evershop/evershop/lib/locale/activeDictionary.js';
 import { cn } from '@evershop/evershop/lib/util/cn';
 import { shiftIntoView } from '@evershop/evershop/lib/util/shiftIntoView';
 import { ChevronDown, Menu, X } from 'lucide-react';
@@ -90,7 +91,7 @@ function MenuAnchor({
 }) {
   return link.newTab ? (
     <a
-      href={link.url}
+      href={localizeLink(link.url)}
       target="_blank"
       rel={
         link.nofollow ? 'noopener noreferrer nofollow' : 'noopener noreferrer'
@@ -100,7 +101,7 @@ function MenuAnchor({
       {children}
     </a>
   ) : (
-    <a href={link.url} rel={relFor(link)} className={className}>
+    <a href={localizeLink(link.url)} rel={relFor(link)} className={className}>
       {children}
     </a>
   );
@@ -220,7 +221,7 @@ export default function BasicMenu({
                       render={
                         item.newTab ? (
                           <a
-                            href={item.url}
+                            href={localizeLink(item.url)}
                             target="_blank"
                             rel={
                               item.nofollow
@@ -235,7 +236,7 @@ export default function BasicMenu({
                             />
                           </a>
                         ) : (
-                          <a href={item.url} rel={relFor(item)}>
+                          <a href={localizeLink(item.url)} rel={relFor(item)}>
                             {_(item.name)}
                             <ChevronDown
                               className="relative top-px ml-1 size-3"
@@ -253,7 +254,7 @@ export default function BasicMenu({
                             className="evershop-basic-menu__sub"
                           >
                             <NavigationMenuLink
-                              href={subItem.url}
+                              href={localizeLink(subItem.url)}
                               target={subItem.newTab ? '_blank' : undefined}
                               rel={relFor(subItem)}
                               className="evershop-basic-menu__sub-link w-full"
@@ -267,7 +268,7 @@ export default function BasicMenu({
                   </>
                 ) : (
                   <NavigationMenuLink
-                    href={item.url}
+                    href={localizeLink(item.url)}
                     target={item.newTab ? '_blank' : undefined}
                     rel={relFor(item)}
                     className="evershop-basic-menu__link px-4 py-2 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:font-semibold hover:bg-transparent focus:bg-transparent hover:underline"
