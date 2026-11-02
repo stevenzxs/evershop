@@ -90,7 +90,15 @@ export async function composeLocaleDictionary(
   locale: string,
   base: Record<string, string>
 ): Promise<Record<string, string>> {
-  return getValue<Record<string, string>>('localeDictionary', base, { locale });
+  // The registry caches by (initValue, context) and SKIPS processors on a
+  // hit. The disk base is deep-equal on every reload, so without a nonce the
+  // second and later builds would return the stale cached dictionary and the
+  // DB-override processor (translationdb) would never run again. Dictionary
+  // builds are rare (boot + hot reload), so the cache buys nothing here.
+  return getValue<Record<string, string>>('localeDictionary', base, {
+    locale,
+    nonce: Date.now()
+  });
 }
 
 async function buildLocale(locale: string): Promise<Record<string, string>> {
