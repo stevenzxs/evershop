@@ -36,13 +36,17 @@ export function mergeOverrides(
 }
 
 export default async () => {
+  // `function` keyword, NOT an arrow: the registry invokes processors via
+  // callback.call(context, value) — the locale arrives on `this`, there is no
+  // second argument. (Arrow function here would silently get locale=undefined
+  // and the merge would never run.)
   addProcessor(
     'localeDictionary',
-    async (
-      base: Record<string, string>,
-      context: { locale?: string } | undefined
-    ) => {
-      const locale = context?.locale;
+    async function (
+      this: { locale?: string } | undefined,
+      base: Record<string, string>
+    ) {
+      const locale = this?.locale;
       if (!locale) {
         return base;
       }
