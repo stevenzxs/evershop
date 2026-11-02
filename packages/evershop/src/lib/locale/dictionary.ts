@@ -86,6 +86,10 @@ export async function loadLocale(
  * unchanged. A future admin-managed-translation module registers a processor
  * (DB overrides win) without touching this file or any call site.
  */
+// Monotonic per-build nonce. Date.now() alone can repeat within the same
+// millisecond (back-to-back builds), which would still hit the registry cache.
+let buildNonce = 0;
+
 export async function composeLocaleDictionary(
   locale: string,
   base: Record<string, string>
@@ -95,9 +99,10 @@ export async function composeLocaleDictionary(
   // second and later builds would return the stale cached dictionary and the
   // DB-override processor (translationdb) would never run again. Dictionary
   // builds are rare (boot + hot reload), so the cache buys nothing here.
+  buildNonce += 1;
   return getValue<Record<string, string>>('localeDictionary', base, {
     locale,
-    nonce: Date.now()
+    nonce: buildNonce
   });
 }
 
