@@ -83,7 +83,8 @@ export function getLocaleContextIso(): IsoLocaleContext {
  * already-prefixed path is never double-prefixed.
  */
 export function localizeLink(url: string): string {
-  if (!url || !url.startsWith('/')) {
+  // Internal absolute paths only; protocol-relative (//cdn...) is external.
+  if (!url || !url.startsWith('/') || url.startsWith('//')) {
     return url;
   }
   const ctx = getLocaleContextIso();
