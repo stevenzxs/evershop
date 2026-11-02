@@ -1,5 +1,6 @@
 import Area from '@components/common/Area.js';
 import { useProduct } from '@components/frontStore/catalog/ProductContext.js';
+import { _ } from '@evershop/evershop/lib/locale/translate/_';
 import React from 'react';
 
 export const ProductSingleName = () => {
@@ -8,7 +9,7 @@ export const ProductSingleName = () => {
     <>
       <Area id="productNameBefore" noOuter />
       <h1 className="product__single__name capitalize text-2xl font-semibold tracking-tight md:text-3xl">
-        {name}
+        {_(name)}
       </h1>
       <Area id="productNameAfter" noOuter />
     </>

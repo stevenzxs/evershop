@@ -28,7 +28,7 @@ export const ProductListItemRender = ({
             {product.image && (
               <Image
                 src={product.image.url}
-                alt={product.image.alt || product.name}
+                alt={product.image.alt || _(product.name)}
                 width={imageWidth || 120}
                 height={imageHeight || 120}
                 loading="lazy"
@@ -49,7 +49,7 @@ export const ProductListItemRender = ({
                 href={product.url}
                 className="hover:text-primary transition-colors"
               >
-                {product.name}
+                {_(product.name)}
               </a>
             </h3>
 
