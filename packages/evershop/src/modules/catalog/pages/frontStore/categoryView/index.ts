@@ -1,5 +1,6 @@
 import { select } from '@evershop/postgres-query-builder';
 import { pool } from '../../../../../lib/postgres/connection.js';
+import { translate } from '../../../../../lib/locale/translate/translate.js';
 import { getBaseUrl } from '../../../../../lib/util/getBaseUrl.js';
 import { setPageMetaInfo } from '../../../../cms/services/pageMetaInfo.js';
 import { setContextValue } from '../../../../graphql/services/contextHelper.js';
@@ -24,8 +25,13 @@ export default async (request, response, next) => {
     } else {
       setContextValue(request, 'categoryId', category.category_id);
       setPageMetaInfo(request, {
-        title: category.meta_title || category.name,
-        description: category.meta_description || category.short_description
+        // DB content is stored in the source language; translate resolves the
+        // request-locale dictionary entry when one exists (falls back to the
+        // stored string otherwise).
+        title: translate(category.meta_title || category.name),
+        description: translate(
+          category.meta_description || category.short_description || ''
+        )
       });
 
       if (category.image) {

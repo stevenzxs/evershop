@@ -2,10 +2,15 @@ import Area from '@components/common/Area.js';
 import { Editor } from '@components/common/Editor.js';
 import { Image } from '@components/common/Image.js';
 import { useCategory } from '@components/frontStore/catalog/CategoryContext.js';
+import { _ } from '@evershop/evershop/lib/locale/translate/_';
 import React from 'react';
 
 export function CategoryInfo() {
   const { name, description, image } = useCategory();
+  // Dynamic DB content: look the stored (source-language) name up in the
+  // active locale dictionary so translated category names render on
+  // non-default locales. Missing entries fall back to the stored name.
+  const displayName = _(name);
   return (
     <>
       <Area id="beforeCategoryInfo" />
@@ -21,7 +26,7 @@ export function CategoryInfo() {
             <Image
               className="category__image absolute inset-0 h-full w-full"
               src={image.url}
-              alt={image.alt || name}
+              alt={image.alt || displayName}
               width={1800}
               height={1029}
               objectFit="cover"
@@ -37,7 +42,7 @@ export function CategoryInfo() {
             <div className="absolute inset-0 bg-black/20 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-center px-8 text-white">
               <h1 className="category__name text-3xl font-semibold tracking-tight text-white">
-                {name}
+                {displayName}
               </h1>
               <div className="category__description mt-1 max-w-lg text-sm text-white/90 [&_*]:text-white/90">
                 <Editor rows={description} />
@@ -47,7 +52,7 @@ export function CategoryInfo() {
         ) : (
           <div className="category__info">
             <h1 className="category__name text-3xl font-semibold tracking-tight">
-              {name}
+              {displayName}
             </h1>
             <div className="category__description prose prose-base mt-2 max-w-none text-muted-foreground">
               <Editor rows={description} />

@@ -129,7 +129,7 @@ function MobileItemList({
               isActive(item.url) && 'text-primary'
             )}
           >
-            {item.name}
+            {_(item.name)}
           </MenuAnchor>
           {item.children.length > 0 && (
             <ul className="evershop-basic-menu__mobile-subs mb-1 ml-3 flex flex-col border-l border-divider pl-2">
@@ -139,7 +139,7 @@ function MobileItemList({
                     link={subItem}
                     className="evershop-basic-menu__mobile-sub-link block rounded-md px-3 py-1.5 text-sm text-foreground/70 transition-colors hover:bg-muted/50 hover:text-foreground"
                   >
-                    {subItem.name}
+                    {_(subItem.name)}
                   </MenuAnchor>
                 </li>
               ))}
@@ -228,7 +228,7 @@ export default function BasicMenu({
                                 : 'noopener noreferrer'
                             }
                           >
-                            {item.name}
+                            {_(item.name)}
                             <ChevronDown
                               className="relative top-px ml-1 size-3"
                               aria-hidden="true"
@@ -236,7 +236,7 @@ export default function BasicMenu({
                           </a>
                         ) : (
                           <a href={item.url} rel={relFor(item)}>
-                            {item.name}
+                            {_(item.name)}
                             <ChevronDown
                               className="relative top-px ml-1 size-3"
                               aria-hidden="true"
@@ -258,7 +258,7 @@ export default function BasicMenu({
                               rel={relFor(subItem)}
                               className="evershop-basic-menu__sub-link w-full"
                             >
-                              {subItem.name}
+                              {_(subItem.name)}
                             </NavigationMenuLink>
                           </li>
                         ))}
@@ -273,7 +273,7 @@ export default function BasicMenu({
                     className="evershop-basic-menu__link px-4 py-2 hover:text-primary transition-colors data-[active=true]:text-primary data-[active=true]:font-semibold hover:bg-transparent focus:bg-transparent hover:underline"
                     data-active={isActive(item.url)}
                   >
-                    {item.name}
+                    {_(item.name)}
                   </NavigationMenuLink>
                 )}
               </NavigationMenuItem>

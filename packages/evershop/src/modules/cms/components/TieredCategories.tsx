@@ -4,6 +4,7 @@ import {
   Editable,
   EditableImageOverlay
 } from '@components/common/page-builder/index.js';
+import { _ } from '@evershop/evershop/lib/locale/translate/_';
 import React from 'react';
 
 /**
@@ -86,7 +87,7 @@ export default function TieredCategories({
           <div key={group.id} className="evershop-tiered-categories__group space-y-3">
             <ParentTag
               href={showParentLink ? group.parent.url : undefined}
-              aria-label={showParentLink ? `Shop ${group.parent.label}` : undefined}
+              aria-label={showParentLink ? `Shop ${_(group.parent.label)}` : undefined}
               className={`evershop-tiered-categories__parent group block overflow-hidden ${
                 showParentLink ? 'transition-opacity hover:opacity-90' : ''
               }`}
@@ -136,7 +137,7 @@ export default function TieredCategories({
                 fieldPath={`settings.groups.${originalIndex}.parent.label`}
                 className="evershop-tiered-categories__subheading evershop-widget__item-heading text-base font-semibold"
               >
-                {group.parent.label}
+                {_(group.parent.label)}
               </Editable>
               <ul className="evershop-tiered-categories__subs flex flex-wrap items-baseline gap-x-1 gap-y-1 text-sm">
                 {(group.subs ?? [])
@@ -147,7 +148,7 @@ export default function TieredCategories({
                         href={sub.url}
                         className="evershop-tiered-categories__sub-link text-foreground/80 hover:underline"
                       >
-                        {sub.label}
+                        {_(sub.label)}
                       </a>
                       {i < arr.length - 1 && (
                         <span

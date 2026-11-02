@@ -6,6 +6,7 @@ import {
   isPageBuilderActive
 } from '@components/common/page-builder/index.js';
 import { ImagePlus } from 'lucide-react';
+import { _ } from '@evershop/evershop/lib/locale/translate/_';
 import React, { useEffect, useState } from 'react';
 
 /**
@@ -197,7 +198,7 @@ export default function CategoryMosaic({
               href={tile.link}
               target={tile.newTab ? '_blank' : undefined}
               rel={tile.newTab ? 'noopener noreferrer' : undefined}
-              aria-label={`Shop ${tile.label}`}
+              aria-label={`Shop ${_(tile.label)}`}
               className="evershop-category-mosaic__tile group block overflow-hidden"
               style={{ gridColumn: `span ${span}` }}
             >
@@ -246,7 +247,7 @@ export default function CategoryMosaic({
                         fieldPath={labelFieldPath}
                         className="evershop-widget__item-heading text-base font-semibold"
                       >
-                        {tile.label}
+                        {_(tile.label)}
                       </Editable>
                       <span aria-hidden="true" className="text-base">
                         →
@@ -272,7 +273,7 @@ export default function CategoryMosaic({
                     fieldPath={labelFieldPath}
                     className="evershop-widget__item-heading text-sm font-semibold"
                   >
-                    {tile.label}
+                    {_(tile.label)}
                   </Editable>
                   <span aria-hidden="true">→</span>
                 </div>

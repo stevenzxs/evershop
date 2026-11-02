@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from '@components/common/ui/Breadcrumb.js';
+import { _ } from '@evershop/evershop/lib/locale/translate/_';
 import React from 'react';
 
 interface BreadcrumbProps {
@@ -27,10 +28,10 @@ function Breadcrumb({ pageInfo: { breadcrumbs } }: BreadcrumbProps) {
               <React.Fragment key={index}>
                 <BreadcrumbItem>
                   {index === breadcrumbs.length - 1 ? (
-                    <BreadcrumbPage>{breadcrumb.title}</BreadcrumbPage>
+                    <BreadcrumbPage>{_(breadcrumb.title)}</BreadcrumbPage>
                   ) : (
                     <BreadcrumbLink href={breadcrumb.url}>
-                      {breadcrumb.title}
+                      {_(breadcrumb.title)}
                     </BreadcrumbLink>
                   )}
                 </BreadcrumbItem>
