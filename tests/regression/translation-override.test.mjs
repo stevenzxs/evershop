@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mergeOverrides } from '../packages/evershop/dist/modules/translationdb/bootstrap.js';
+import { mergeOverrides } from '../../packages/evershop/dist/modules/translationdb/bootstrap.js';
 
 test('mergeOverrides lets DB rows win over the disk base', () => {
   const base = { Hello: '你好', Keep: '保留' };
