@@ -1,0 +1,5 @@
+{
+  "methods": ["POST"],
+  "path": "/orders/:uuid/digital-downloads/disable",
+  "access": "private"
+}

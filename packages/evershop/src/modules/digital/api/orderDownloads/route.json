@@ -1,0 +1,5 @@
+{
+  "methods": ["GET"],
+  "path": "/customers/me/orders/:uuid/downloads",
+  "access": "public"
+}

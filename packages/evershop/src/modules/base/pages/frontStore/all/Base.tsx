@@ -326,6 +326,7 @@ export const fragments = `
   fragment ShoppingCartItem on ShoppingCartItem {
     uuid
     productId
+    noShippingRequired
     productSku
     productName
     thumbnail

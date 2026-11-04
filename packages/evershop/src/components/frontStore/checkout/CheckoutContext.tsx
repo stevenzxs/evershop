@@ -257,8 +257,7 @@ export function CheckoutProvider({
 
   // Compute requiresShipment based on cart items
   const requiresShipment = useMemo(() => {
-    // Just return true for now as all products require shipping. We will get back to this when virtual/downloadable products are supported.
-    return true;
+    return cartState.data?.items.some((item) => item.noShippingRequired !== true) ?? false;
   }, [cartState?.data?.items]);
 
   // Place order with loading state and error handling (original API - expects data already in cart)

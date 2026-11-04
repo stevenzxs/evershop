@@ -1118,14 +1118,9 @@ export const CartProvider = ({
     }
   }, [state.data?.removeCouponApi, syncCartWithServer]);
 
-  // Check if shipping is required
-  // Note: Currently assumes all items require shipping
-  // If you need to support virtual/downloadable products, add a 'virtual' or 'requiresShipping' field to CartItem
+  // Unknown item flags fail safe to physical delivery; empty carts need none.
   const isShippingRequired = useCallback(() => {
-    if (!state.data) return false;
-    // If there are items in the cart, shipping is required
-    // This can be enhanced with a virtual/downloadable product check if needed
-    return state.data.items.length > 0;
+    return state.data?.items.some((item) => item.noShippingRequired !== true) ?? false;
   }, [state.data?.items]);
 
   // Check if cart is ready for checkout

@@ -41,3 +41,21 @@
 ## Operational boundary
 
 No new disaster-recovery system and no self-service refund implementation, as requested. Already issued links remain usable until expiration after manual disabling; downloaded files cannot be recalled.
+
+## Implementation checkpoint — 2026-11-03
+
+- Local draft implemented: migrations, product/group bindings, version existence
+  validation, transactional order snapshot hook, owner/paid download API,
+  five-minute signatures, atomic per-file cooldown, admin binding/disable cards,
+  customer order downloads panel.
+- Fixed demonstrated virtual checkout frontend gaps and added the missing
+  item-level shipping flag to the shared cart GraphQL fragment.
+- Verified locally: SWC compile; TypeScript noEmit; changed-file ESLint; 21 Node
+  regression tests; 20 existing billing/zero-checkout Jest tests; git diff check.
+- Not yet verified: real PostgreSQL migrations/transactions/concurrent issuance,
+  server middleware authorization integration, browser UI/checkout, versioned
+  SILO GET through Caddy, clean Linux production build.
+- Local Docker daemon is unavailable; PostgreSQL executables are absent from
+  PATH. Do not run integration migrations against the live store as a substitute.
+- Production bucket/credentials/configuration/migrations/deployment untouched.
+  Implementation remains uncommitted pending integration verification.
